@@ -1,0 +1,146 @@
+html,
+body {
+    margin: 0;
+    padding: 0;
+}
+
+* {
+    box-sizing: border-box;
+}
+body {
+    height: 100vh;
+    width: auto;
+    display: flex;
+    flex-direction: column;
+    font-family: Lato, sans-serif;
+    justify-content: space-between;
+    align-items: center;
+}
+
+header {
+    display: flex;
+    background-color: dodgerblue;
+    width: 100vw;
+    color: floralwhite;
+    font-size: 2rem;
+
+    align-items: center;
+    justify-content: center;
+}
+
+h1 {
+    font-size: 2rem;
+}
+
+main {
+    margin-top: 5vh;
+    flex-grow: 1;
+    width: 80vw;
+}
+
+.add-book {
+    margin: 0 auto;
+    width: 60vw;
+    display: flex;
+    flex-direction: column;
+}
+
+.inputs {
+    display: flex;
+    justify-content: space-evenly;
+}
+
+@media only screen and (max-width: 450px) {
+    * {
+        font-size: 80%;
+    }
+}
+
+@media only screen and (max-width: 600px) {
+    .inputs {
+        display: flex;
+        flex-direction: column;
+    }
+    main {
+        width: 100vw;
+    }
+}
+
+.checkbox {
+    align-self: center;
+}
+
+#add-book-button {
+    padding: 0.4rem 1rem;
+    margin-top: 1rem;
+    width: min-content;
+    align-self: center;
+    background-color: #00cec9;
+    color: floralwhite;
+    border: none;
+    border-radius: 1rem;
+}
+
+#add-book-button:hover {
+    background-color: #81ecec;
+    transition: 0.3s;
+}
+
+#add-book-button:focus {
+    outline: none;
+}
+
+button {
+    transition: 0.3s;
+}
+
+button:focus {
+    outline: none;
+}
+
+.selection {
+    width: 60vw;
+    margin: 1rem auto -1rem auto;
+}
+.selection > ul {
+    font-size: 1rem;
+    padding: 0;
+    list-style: none;
+    display: flex;
+    justify-content: space-evenly;
+}
+
+.filter:hover {
+    text-decoration: underline;
+}
+
+.filter-status {
+    display: block;
+    padding: 0.5rem;
+    color: floralwhite;
+    background-color: dodgerblue;
+    text-align: center;
+}
+
+table {
+    width: 100%;
+}
+
+.head-row th {
+    text-align: start;
+}
+
+.head-row th:last-child {
+    width: 2rem;
+}
+
+footer {
+    height: 2rem;
+    width: 100%;
+    padding: 0.5rem;
+    text-align: center;
+    background-color: dodgerblue;
+    color: floralwhite;
+}
+
+/* DOM created elements */

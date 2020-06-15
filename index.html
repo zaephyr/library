@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/pretty-checkbox@3.0/dist/pretty-checkbox.min.css" />
+        <link href="https://fonts.googleapis.com/css?family=Lato:100,300,600" rel="stylesheet" type="text/css" />
+        <link rel="stylesheet" href="style.css" />
+        <title>Library</title>
+    </head>
+    <body>
+        <header>
+            <h1>myLibrary</h1>
+        </header>
+
+        <main>
+            <div class="add-book">
+                <div class="inputs">
+                    <input placeholder="title" id="title" />
+                    <input placeholder="author" id="author" />
+                    <input placeholder="pages" id="pages" type="number" />
+                </div>
+
+                <button onclick="addBookButton()" id="add-book-button">ADD BOOK</button>
+            </div>
+            <div class="selection">
+                <ul>
+                    <li class="filter" data-filter="all-books">All Books</li>
+                    <li class="filter" data-filter="read">Read</li>
+                    <li class="filter" data-filter="not-read">Not Read</li>
+                </ul>
+            </div>
+            <span class="filter-status">All Books</span>
+            <table>
+                <thead>
+                    <tr class="head-row">
+                        <th>Title</th>
+                        <th id="author">Author</th>
+                        <th>Pages</th>
+                        <th>Read?</th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody id="books"></tbody>
+            </table>
+        </main>
+        <footer>Uroš Mahne 2020</footer>
+    </body>
+    <script src="https://unpkg.com/ionicons@5.0.0/dist/ionicons.js"></script>
+    <script type="text/javascript" src="index.js"></script>
+</html>
