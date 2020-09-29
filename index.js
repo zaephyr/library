@@ -1,18 +1,18 @@
-const myLibrary = [];
+let myLibrary;
 const tbody = document.querySelector('#books');
 
-class Book {
-    constructor(title, author, pages, status) {
-        this.title = title;
-        this.author = author;
-        this.pages = pages;
-        this.status = status;
-    }
-}
+const book = (title, author, pages, status) => {
+    return { title, author, pages, status };
+};
 
-myLibrary[0] = new Book('The Black Swan', 'Nassim Nicholas Taleb', 400, true);
-myLibrary[1] = new Book('Crime and Punishement', 'Fyodor Dostoevsky', 576, true);
-myLibrary[2] = new Book('The Hobit', 'J.R.R. Tolkien', 295, false);
+if (localStorage.getItem('books') !== null) {
+    myLibrary = JSON.parse(localStorage.getItem('books'));
+} else {
+    myLibrary = [];
+    myLibrary[0] = book('The Black Swan', 'Nassim Nicholas Taleb', 400, true);
+    myLibrary[1] = book('Crime and Punishement', 'Fyodor Dostoevsky', 576, true);
+    myLibrary[2] = book('The Hobit', 'J.R.R. Tolkien', 295, false);
+}
 
 function addBookButton() {
     const title = document.getElementById('title');
@@ -20,7 +20,7 @@ function addBookButton() {
     const pages = document.getElementById('pages');
 
     if (title.value.length >= 2 && author.value.length >= 2) {
-        const newBook = new Book(title.value, author.value, pages.value, false);
+        const newBook = book(title.value, author.value, pages.value, false);
         myLibrary.push(newBook);
     } else {
         alert('You need to fill title and author');
@@ -52,29 +52,30 @@ function nameShort() {
     for (let i = 0; i < nameCell.length; i++) {
         nameArr.push(nameCell[i].textContent);
     }
-    // window.addEventListener('resize', () => {
-    //     console.log('resize');
-    const nameCellWidth = document.querySelectorAll('td:nth-child(2)')[0].clientWidth;
-    if (nameCellWidth < 175) {
+    window.addEventListener('resize', () => {
+        console.log('resize');
+        const nameCellWidth = document.querySelectorAll('td:nth-child(2)')[0].clientWidth;
         for (let i = 0; i < nameArr.length; i++) {
-            if (nameArr[i].length > 14) {
-                const singleNameArr = nameArr[i].split(' ');
-                if (singleNameArr.length == 2) {
-                    nameCell[i].textContent = singleNameArr[0].toString().charAt(0) + '. ' + singleNameArr[1];
-                } else if (singleNameArr.length == 3) {
-                    nameCell[i].textContent =
-                        singleNameArr[0].toString().charAt(0) +
-                        '. ' +
-                        singleNameArr[1].toString().charAt(0) +
-                        '. ' +
-                        singleNameArr[2];
+            if (nameCellWidth < 175) {
+                if (nameArr[i].length > 14) {
+                    const singleNameArr = nameArr[i].split(' ');
+                    if (singleNameArr.length == 2) {
+                        nameCell[i].textContent = singleNameArr[0].toString().charAt(0) + '. ' + singleNameArr[1];
+                    } else if (singleNameArr.length == 3) {
+                        nameCell[i].textContent =
+                            singleNameArr[0].toString().charAt(0) +
+                            '. ' +
+                            singleNameArr[1].toString().charAt(0) +
+                            '. ' +
+                            singleNameArr[2];
+                    }
                 }
+            } else {
+                nameCell[i].textContent = nameArr[i];
             }
         }
-    }
+    });
 }
-//);
-// }
 
 function updateTable(arr) {
     tbody.innerHTML = '';
@@ -135,6 +136,7 @@ function updateTable(arr) {
         delIconPlace.appendChild(deleteButton);
         deleteButton.appendChild(delIcon);
         row.appendChild(delIconPlace);
+        localStorage.setItem('books', JSON.stringify(myLibrary));
         nameShort();
     }
 }
